@@ -12,9 +12,8 @@ function fetchUsers() {
                         <td>${user.id}</td>
                         <td>${user.name}</td>
                         <td>${user.email}</td>
-                        <td>${user.age}</td>
                         <td>
-                            <button class="btn btn-warning btn-sm" onclick="editUser(${user.id}, '${user.name}', '${user.email}', ${user.age})">Edit</button>
+                            <button class="btn btn-warning btn-sm" onclick="editUser(${user.id}, '${user.name}', '${user.email}')">Edit</button>
                             <button class="btn btn-danger btn-sm" onclick="deleteUser(${user.id})">Delete</button>
                         </td>
                     </tr>
@@ -30,9 +29,8 @@ document.getElementById('userForm').addEventListener('submit', function (event) 
     const userId = document.getElementById('userId').value;
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
-    const age = document.getElementById('age').value;
 
-    const user = { name, email, age };
+    const user = { name, email }; // Remove age from here
 
     if (userId) {
         fetch(`${apiUrl}/${userId}`, {
@@ -65,11 +63,10 @@ function deleteUser(id) {
     }
 }
 
-function editUser(id, name, email, age) {
+function editUser(id, name, email) { // Remove age from parameters
     document.getElementById('userId').value = id;
     document.getElementById('name').value = name;
     document.getElementById('email').value = email;
-    document.getElementById('age').value = age;
 }
 
 function resetForm() {
